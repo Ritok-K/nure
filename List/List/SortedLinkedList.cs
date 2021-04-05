@@ -78,7 +78,16 @@ namespace List
             count++;
         }
 
-        
+        public bool Contains(T value)
+        {
+            Node<T> prevNode;
+            Node<T> currentNode;
+
+            Search(value, out prevNode, out currentNode);
+
+            return currentNode != null;
+        }
+
         void Search(T value, out Node<T> prevNode, out Node<T> currentNode)
         {
             prevNode = null;
