@@ -78,6 +78,19 @@ namespace List
             count++;
         }
 
+        
+        void Search(T value, out Node<T> prevNode, out Node<T> currentNode)
+        {
+            prevNode = null;
+            currentNode = head;
+
+            while (currentNode != null && (comparator(value, currentNode.value) || comparator(currentNode.value, value)))
+            {
+                prevNode = currentNode;
+                currentNode = currentNode.next;
+            }
+        }
+
         Comparator comparator;
         Node<T> head;
         int count;
