@@ -42,9 +42,41 @@ namespace List
             count = 0;
         }
 
-        
+        public void Insert(T value)
+        {
+            Node<T> newNode = new Node<T>();
+            newNode.value = value;
 
+            if(IsEmpty)
+            {
+                head = newNode;
+            }
+            else
+            {
+                Node<T> prevNode = null;
+                Node<T> currentNode = head;
 
+                // find place where insert new node(between prev and current nodes)
+                while (currentNode != null && !comparator(value, currentNode.value))
+                {
+                    prevNode = currentNode;
+                    currentNode = currentNode.next;
+                }
+
+                if (prevNode == null) // if prev was not found (value is global mininmum) insert in begin of list 
+                {
+                    head = newNode; // set list head on new global minimum (new list head)
+                }
+                else 
+                {
+                    prevNode.next = newNode; // set new node as prev node
+                }
+                
+                newNode.next = currentNode; // set current node as netx of new node
+            }
+
+            count++;
+        }
 
         Comparator comparator;
         Node<T> head;
