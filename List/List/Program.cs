@@ -22,11 +22,16 @@ namespace List
         {
             Console.WriteLine("List: ");
 
-            var currentNode = list.GetHead(); // currentNode is SortedLinkedList<int>.Node<int> type 
-            while (currentNode != null)
+            //var currentNode = list.GetHead(); // currentNode is SortedLinkedList<int>.Node<int> type 
+            //while (currentNode != null)
+            //{
+            //    Console.WriteLine(list.GetValue(currentNode));
+            //    currentNode = list.GetNext(currentNode);
+            //}
+
+            for(var node = list.GetHead(); node != null; node = list.GetNext(node))
             {
-                Console.WriteLine(list.GetValue(currentNode));
-                currentNode = list.GetNext(currentNode);
+                Console.WriteLine(list.GetValue(node));
             }
         }
 
