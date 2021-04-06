@@ -18,9 +18,22 @@ namespace List
             return list;
         }
 
+        static void Output(SortedLinkedList<int> list)
+        {
+            Console.WriteLine("List: ");
+
+            var currentNode = list.GetHead(); // currentNode is SortedLinkedList<int>.Node<int> type 
+            while (currentNode != null)
+            {
+                Console.WriteLine(list.GetValue(currentNode));
+                currentNode = list.GetNext(currentNode);
+            }
+        }
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var list = BuildList();
+            Output(list);
         }
     }
 }
