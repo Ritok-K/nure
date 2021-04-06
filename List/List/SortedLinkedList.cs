@@ -38,6 +38,11 @@ namespace List
 
         public T GetValue(Node<T> node)
         {
+            if(node == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             return node.value;
         }
         public Node<T> GetHead()
@@ -47,6 +52,11 @@ namespace List
 
         public Node<T> GetNext(Node<T> node)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             return node.next;
         }
 
