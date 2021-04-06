@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    class SortedLinkedList<T>
+    public class SortedLinkedList<T>
     {
-        class Node<T>
+        public class Node<T>
         {
             internal T value;
             internal Node<T> next;  // reference to the next node
@@ -34,6 +34,11 @@ namespace List
         public int Length
         {
             get => count;
+        }
+
+        public T GetValue(Node<T> node)
+        {
+            return node.value;
         }
 
         public void Clear()
