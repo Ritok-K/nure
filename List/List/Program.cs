@@ -61,9 +61,14 @@ namespace List
                 Console.Write("Input value to delete: ");
                 int value = int.Parse(Console.ReadLine());
 
-                while (list.Delete(value)) ;
+                int deletedItemCount = 0;
+                while (list.Delete(value))
+                {
+                    deletedItemCount++;
+                }
 
                 Output(list);
+                Console.WriteLine($"{deletedItemCount} " + (deletedItemCount > 1 ? "elements were deleted." : "element was deleted."));
             }
             catch (Exception e)
             {
