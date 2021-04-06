@@ -47,6 +47,11 @@ namespace List
             count = 0;
         }
 
+        public Node<T> GetHead()
+        {
+            return head;
+        }
+
         public void Insert(T value)
         {
             Node<T> newNode = new Node<T>();
