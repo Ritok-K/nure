@@ -54,12 +54,33 @@ namespace List
             }
         }
 
+        static void DeleteValue(SortedLinkedList<int> list)
+        {
+            try
+            {
+                Console.Write("Input value to delete: ");
+                int value = int.Parse(Console.ReadLine());
+
+                while (list.Delete(value)) ;
+
+                Output(list);
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {e.Message}");
+                Console.ResetColor();
+            }
+        }
+
         static void Main(string[] args)
         {
             var list = BuildList();
             Output(list);
 
             InsertValue(list);
+
+            DeleteValue(list);
         }
     }
 }
