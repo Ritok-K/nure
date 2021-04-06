@@ -40,16 +40,20 @@ namespace List
         {
             return node.value;
         }
+        public Node<T> GetHead()
+        {
+            return head;
+        }
+
+        public Node<T> GetNext(Node<T> node)
+        {
+            return node.next;
+        }
 
         public void Clear()
         {
             head = null;
             count = 0;
-        }
-
-        public Node<T> GetHead()
-        {
-            return head;
         }
 
         public void Insert(T value)
