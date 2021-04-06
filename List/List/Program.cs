@@ -35,10 +35,31 @@ namespace List
             }
         }
 
+        static void InsertValue(SortedLinkedList<int> list)
+        {
+            try
+            {
+                Console.Write("Input new value: ");
+                int value = int.Parse(Console.ReadLine());
+
+                list.Insert(value);
+
+                Output(list);
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {e.Message}");
+                Console.ResetColor();
+            }
+        }
+
         static void Main(string[] args)
         {
             var list = BuildList();
             Output(list);
+
+            InsertValue(list);
         }
     }
 }
