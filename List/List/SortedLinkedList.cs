@@ -88,6 +88,31 @@ namespace List
             return currentNode != null;
         }
 
+        public bool Delete(T value)
+        {
+            Node<T> prevNode;
+            Node<T> currentNode;
+
+            Search(value, out prevNode, out currentNode);
+
+            if (currentNode == null)
+            {
+                return false;
+            }
+
+            if (prevNode == null)
+            {
+                head = currentNode.next;
+            }
+            else
+            {
+                prevNode.next = currentNode.next;
+            }
+
+            count--;
+            return true;
+        }
+
         void Search(T value, out Node<T> prevNode, out Node<T> currentNode)
         {
             prevNode = null;
