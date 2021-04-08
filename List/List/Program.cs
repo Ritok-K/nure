@@ -4,9 +4,9 @@ namespace List
 {
     class Program
     {
-        static SortedLinkedList<int> BuildList()
+        static SortedLinkedList<int> BuildList() // build list
         {
-            var list = new SortedLinkedList<int>((int i1, int i2) => i1 < i2);
+            var list = new SortedLinkedList<int>((int i1, int i2) => i1 < i2); // specify lambda in parameters
 
             list.Insert(1);
             list.Insert(0);
@@ -18,7 +18,7 @@ namespace List
             return list;
         }
 
-        static void Output(SortedLinkedList<int> list)
+        static void Output(SortedLinkedList<int> list) // output list on the screen 
         {
             Console.WriteLine("List: ");
 
@@ -35,7 +35,7 @@ namespace List
             }
         }
 
-        static void InsertValue(SortedLinkedList<int> list)
+        static void InsertValue(SortedLinkedList<int> list) // insert value to the ordered list
         {
             try
             {
@@ -54,7 +54,7 @@ namespace List
             }
         }
 
-        static void DeleteValue(SortedLinkedList<int> list)
+        static void DeleteValue(SortedLinkedList<int> list) // delete value from the list
         {
             try
             {
@@ -62,7 +62,7 @@ namespace List
                 int value = int.Parse(Console.ReadLine());
 
                 int deletedItemCount = 0;
-                while (list.Delete(value))
+                while (list.Delete(value)) // while delete returns true do next attempt to delete value 
                 {
                     deletedItemCount++;
                 }

@@ -8,22 +8,22 @@ namespace List
 {
     public class SortedLinkedList<T>
     {
-        public class Node<T>
+        public class Node<T> // node for list
         {
-            internal T value;
+            internal T value; // value stored in the node
             internal Node<T> next;  // reference to the next node
         }
 
 
         public delegate bool Comparator(T t1, T t2); // return true if t1 < t2
         
-        public SortedLinkedList(Comparator comp)
+        public SortedLinkedList(Comparator comp) // receives argument that is lambda to sort values in list 
         {
-            comparator = comp;
+            comparator = comp; // keep reference on the lambda
             count = 0;
         }
 
-        public bool IsEmpty
+        public bool IsEmpty // returns true when list is empty
         {
             get
             {
@@ -31,12 +31,12 @@ namespace List
             }
         }
 
-        public int Length
+        public int Length // get list length
         {
             get => count;
         }
 
-        public T GetValue(Node<T> node)
+        public T GetValue(Node<T> node) // returns value stored in node
         {
             if(node == null)
             {
@@ -45,12 +45,12 @@ namespace List
 
             return node.value;
         }
-        public Node<T> GetHead()
+        public Node<T> GetHead() // get "head" node (start of the list)
         {
             return head;
         }
 
-        public Node<T> GetNext(Node<T> node)
+        public Node<T> GetNext(Node<T> node) // returns following node after the argument node
         {
             if (node == null)
             {
@@ -60,18 +60,18 @@ namespace List
             return node.next;
         }
 
-        public void Clear()
+        public void Clear() // empty list (forget "head" node)
         {
             head = null;
             count = 0;
         }
 
-        public void Insert(T value)
+        public void Insert(T value) // insert new value to the list
         {
-            Node<T> newNode = new Node<T>();
+            Node<T> newNode = new Node<T>(); // create new node
             newNode.value = value;
 
-            if(IsEmpty)
+            if(IsEmpty) // if list is empty assigne new node to the head
             {
                 head = newNode;
             }
@@ -102,49 +102,50 @@ namespace List
             count++;
         }
 
-        public bool Contains(T value)
+        public bool Contains(T value) // checks whether the list contains value
         {
             Node<T> prevNode;
             Node<T> currentNode;
 
-            Search(value, out prevNode, out currentNode);
+            Search(value, out prevNode, out currentNode); // run Search, return true if node was found
 
             return currentNode != null;
         }
 
-        public bool Delete(T value)
+        public bool Delete(T value) // deletes value from the list, returns true if value was deleted
         {
             Node<T> prevNode;
             Node<T> currentNode;
 
-            Search(value, out prevNode, out currentNode);
+            Search(value, out prevNode, out currentNode); // search node with value and its previous node
 
             if (currentNode == null)
             {
-                return false;
+                return false; // return false if node was not found
             }
 
-            if (prevNode == null)
+            if (prevNode == null) // if previous node is empty then delete "head" node
             {
-                head = currentNode.next;
+                head = currentNode.next; // just moved head to the next node
             }
             else
             {
-                prevNode.next = currentNode.next;
+                prevNode.next = currentNode.next; // link previous node with the next node (forgot reference to founded node)
             }
 
             count--;
             return true;
         }
 
-        void Search(T value, out Node<T> prevNode, out Node<T> currentNode)
+        void Search(T value, out Node<T> prevNode, out Node<T> currentNode) // search node value in the list and previous node value
         {
             prevNode = null;
             currentNode = head;
 
+            // while there is current node and its value is not equal to argument value 
             while (currentNode != null && (comparator(value, currentNode.value) || comparator(currentNode.value, value)))
             {
-                prevNode = currentNode;
+                prevNode = currentNode; // move to the next node
                 currentNode = currentNode.next;
             }
         }
