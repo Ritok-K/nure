@@ -137,6 +137,34 @@ namespace List
             return true;
         }
 
+        public SortedLinkedList<T> MergeWith(SortedLinkedList<T> withList, bool skipDuplicates)
+        {
+            var list = new SortedLinkedList<T>(comparator); // create new list with same comparator
+
+            for (var node = GetHead(); node != null; node = GetNext(node)) // loop on this list
+            {
+                T value = GetValue(node); // get current value
+                bool addValue = skipDuplicates || !list.Contains(value); // add new value if either can skip duplicates or new list does not contain value
+                if (addValue)
+                {
+                    list.Insert(value); // add value
+                }
+            }
+
+            // the same algorithm for withList
+            for (var node = withList.GetHead(); node != null; node = withList.GetNext(node))
+            {
+                T value = withList.GetValue(node);
+                bool addValue = skipDuplicates || !list.Contains(value);
+                if (addValue)
+                {
+                    list.Insert(value);
+                }
+            }
+
+            return list;
+        }
+
         void Search(T value, out Node<T> prevNode, out Node<T> currentNode) // search node value in the list and previous node value
         {
             prevNode = null;

@@ -18,6 +18,20 @@ namespace List
             return list;
         }
 
+        static SortedLinkedList<int> BuildList2() // build list
+        {
+            var list = new SortedLinkedList<int>((int i1, int i2) => i1 < i2); // specify lambda in parameters
+
+            list.Insert(0);
+            list.Insert(9);
+            list.Insert(-2);
+            list.Insert(8);
+            list.Insert(4);
+            list.Insert(3);
+
+            return list;
+        }
+
         static void Output(SortedLinkedList<int> list) // output list on the screen 
         {
             Console.WriteLine("List: ");
@@ -78,6 +92,23 @@ namespace List
             }
         }
 
+        static void MergeLists(SortedLinkedList<int> list1, SortedLinkedList<int> list2)
+        {
+            try
+            {
+                var newList = list1.MergeWith(list2, false);
+
+                Console.WriteLine("Merged list: ");
+                Output(newList);
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {e.Message}");
+                Console.ResetColor();
+            }
+        }
+
         static void Main(string[] args)
         {
             var list = BuildList();
@@ -86,6 +117,8 @@ namespace List
             InsertValue(list);
 
             DeleteValue(list);
+
+            MergeLists(list, BuildList2());
         }
     }
 }
