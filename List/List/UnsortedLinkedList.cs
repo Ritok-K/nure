@@ -81,7 +81,7 @@ namespace List
 
                 Node<T> currNode = head;
                 Node<T> lastNode = null;
-                while(currNode != null)
+                while (currNode != null)
                 {
                     lastNode = currNode;
                     currNode = currNode.next;
@@ -90,8 +90,20 @@ namespace List
                 lastNode.next = newNode;
                 count++;
             }
+        }
 
-            
+        public void InsertAfter(T value, Node<T> after)
+        {
+            if (after == null)
+            {
+                return;
+            }
+
+            Node<T> newNode = new Node<T>(); // create new node
+            newNode.value = value;
+
+            newNode.next = after.next;
+            after.next = newNode;
         }
 
         Node<T> head;
