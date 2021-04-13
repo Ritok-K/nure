@@ -68,7 +68,31 @@ namespace List
             count++;
         }
 
-       
+        public void InsertToEnd(T value)
+        {
+            if (IsEmpty)
+            {
+                InsertToHead(value);
+            }
+            else
+            {
+                Node<T> newNode = new Node<T>(); // create new node
+                newNode.value = value;
+
+                Node<T> currNode = head;
+                Node<T> lastNode = null;
+                while(currNode != null)
+                {
+                    lastNode = currNode;
+                    currNode = currNode.next;
+                }
+
+                lastNode.next = newNode;
+                count++;
+            }
+
+            
+        }
 
         Node<T> head;
         int count;
