@@ -32,6 +32,28 @@ namespace List
             return list;
         }
 
+        static UnsortedLinkedList<int> BuildUList()
+        {
+            var list = new UnsortedLinkedList<int>();
+
+            /*list.InsertToHead(1);
+            list.InsertToHead(0);
+            list.InsertToHead(-2);
+            list.InsertToHead(5);
+            list.InsertToHead(1);
+            list.InsertToHead(9);*/
+
+            list.InsertToEnd(1);
+            list.InsertToEnd(0);
+            list.InsertToEnd(-2);
+            list.InsertToEnd(5);
+            list.InsertToEnd(1);
+            list.InsertToEnd(9);
+
+            return list;
+        }
+
+
         static void Output(SortedLinkedList<int> list) // output list on the screen 
         {
             Console.WriteLine("List: ");
@@ -44,6 +66,23 @@ namespace List
             //}
 
             for(var node = list.GetHead(); node != null; node = list.GetNext(node))
+            {
+                Console.WriteLine(list.GetValue(node));
+            }
+        }
+
+        static void OutputUnsortedList(UnsortedLinkedList<int> list) // output list on the screen 
+        {
+            Console.WriteLine("List: ");
+
+            //var currentNode = list.GetHead(); // currentNode is SortedLinkedList<int>.Node<int> type 
+            //while (currentNode != null)
+            //{
+            //    Console.WriteLine(list.GetValue(currentNode));
+            //    currentNode = list.GetNext(currentNode);
+            //}
+
+            for (var node = list.GetHead(); node != null; node = list.GetNext(node))
             {
                 Console.WriteLine(list.GetValue(node));
             }
@@ -111,14 +150,17 @@ namespace List
 
         static void Main(string[] args)
         {
-            var list = BuildList();
-            Output(list);
+            //var list = BuildList();
+            //Output(list);
 
-            InsertValue(list);
+            //InsertValue(list);
 
-            DeleteValue(list);
+            //DeleteValue(list);
 
-            MergeLists(list, BuildList2());
+            //MergeLists(list, BuildList2());
+
+            var uList = BuildUList();
+            OutputUnsortedList(uList);
         }
     }
 }

@@ -57,8 +57,21 @@ namespace List
             count = 0;
         }
 
-            Node<T> head;
-            int count;
-        
+        public void InsertToHead(T value) // insert new value to the list
+        {
+            Node<T> newNode = new Node<T>(); // create new node
+            newNode.value = value;
+
+            newNode.next = head;
+            head = newNode;
+
+            count++;
+        }
+
+       
+
+        Node<T> head;
+        int count;
+
     }
 }
