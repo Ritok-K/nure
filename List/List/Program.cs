@@ -148,6 +148,22 @@ namespace List
             }
         }
 
+        static void Search(UnsortedLinkedList<int> list)
+        {
+            var node = list.Find(value =>  value == 90 );
+            
+            if(node != null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Item was found.");
+                Console.WriteLine(list.GetValue(node));
+            }
+            else
+            {
+                Console.WriteLine("Item was not found.");
+            }
+        }
+
         static void Main(string[] args)
         {
             //var list = BuildList();
@@ -161,6 +177,8 @@ namespace List
 
             var uList = BuildUList();
             OutputUnsortedList(uList);
+
+            Search(uList);
         }
     }
 }

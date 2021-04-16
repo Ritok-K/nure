@@ -14,6 +14,8 @@ namespace List
             internal Node<T> next;  // reference to the next node
         }
 
+        public delegate bool Finder(T value);
+
         public bool IsEmpty // returns true when list is empty
         {
             get
@@ -106,8 +108,19 @@ namespace List
             after.next = newNode;
         }
 
+        public Node<T> Find(Finder finder)
+        {
+            Node<T> currentNode = head;
+            
+            while (currentNode != null && !finder(GetValue(currentNode)))
+            {
+                currentNode = currentNode.next;
+            }
+
+            return currentNode;
+        }
+
         Node<T> head;
         int count;
-
     }
 }
