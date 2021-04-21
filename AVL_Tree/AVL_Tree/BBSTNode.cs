@@ -128,6 +128,23 @@ namespace AVL_Tree
             root = RecursionDelete(root, value);
         }
 
+        public bool Contains(Tree<T> tree)
+        {
+            bool res = true;
+
+            tree.Traverse(TraverseMethod.InOrder, (n) =>
+            {
+                res = res && (Find(n.value) != null);
+            });
+
+            return res;
+        }
+
+        public Node<T> Find(T value)
+        {
+            return RecursiveFind(root, value);
+        }
+
         public Node<T> FindMin()
         {
             if(IsEmpty)
@@ -285,13 +302,14 @@ namespace AVL_Tree
 
         Node<T> RecursionDelete(Node<T> current, T target)
         {
-            Node<T> parent;
             if (current == null)
             { 
                 return null; 
             }
             else
             {
+                Node<T> parent;
+
                 int compRes = comp(target, current.value);
 
                 //left subtree
@@ -357,6 +375,24 @@ namespace AVL_Tree
                     {   //if current.left != null
                         return current.left;
                     }
+                }
+            }
+
+            return current;
+        }
+
+        Node<T> RecursiveFind(Node<T> current, T target)
+        {
+            if (current != null)
+            {
+                int compRes = comp(target, current.value);
+                if (compRes < 0)
+                {
+                    current = RecursiveFind(current.left, target);
+                }
+                else if (compRes > 0)
+                {
+                    current = RecursiveFind(current.right, target);
                 }
             }
 

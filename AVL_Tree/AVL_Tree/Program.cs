@@ -115,6 +115,16 @@ namespace AVL_Tree
             Console.WriteLine($"Tree after insert: {newTree.OutputInOrder()}");
         }
 
+        static void ContainsTree(Tree<int> tree) // task 10
+        {
+            var cloneTree = tree.Clone();
+            cloneTree.Delete(cloneTree.FindMin().Value);
+            cloneTree.Add(-2);
+
+            bool contains = tree.Contains(cloneTree);
+            Console.WriteLine($"Tree cotains modified clone: {contains}");
+        }
+
         static void Main(string[] args)
         {
             var tree = BuildTree();
@@ -131,6 +141,8 @@ namespace AVL_Tree
             CloneTree(tree);
 
             InsertTree(tree);
+
+            ContainsTree(tree);
 
             DeleteEvenKeys(tree);
         }
