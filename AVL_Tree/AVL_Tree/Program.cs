@@ -33,11 +33,20 @@ namespace AVL_Tree
             Console.WriteLine($"The number of left son nodes is: {number}");
         }
 
+        static void Delete(Tree<int> tree)
+        {
+            tree.Delete(40);
+            tree.OutputInOrder();
+        }
+
         static void Main(string[] args)
         {
             var tree = BuildTree();
             PrintSorted(tree);
+
             LeftCountNodeOutput(tree);
+
+            Delete(tree);
         }
     }
 }

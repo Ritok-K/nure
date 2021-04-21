@@ -72,6 +72,11 @@ namespace AVL_Tree
             }
         }
 
+        public void Delete(T value)
+        {
+            root = RecursionDelete(root, value);
+        }
+
         Node<T> RecursiveAdd(Node<T> current, Node<T> node)
         {
             if (current == null)
@@ -109,7 +114,7 @@ namespace AVL_Tree
                 }
                 else
                 {
-                    top = RotateRighLeft(top.right);
+                    top = RotateRightLeft(top.right);
                 }
             }
             else if (balanceFactor > 1)
@@ -118,11 +123,11 @@ namespace AVL_Tree
                 var leftBalanceFactor = top.left.BalanceFactor;
                 if (leftBalanceFactor > 0)
                 {
-                    top = RotateRigh(top);
+                    top = RotateRight(top);
                 }
                 else
                 {
-                    top = RotateLeftRigh(top);
+                    top = RotateLeftRight(top);
                 }
             }
 
@@ -137,7 +142,7 @@ namespace AVL_Tree
             return center;
         }
 
-        Node<T> RotateRigh(Node<T> top)
+        Node<T> RotateRight(Node<T> top)
         {
             Node<T> center = top.left;
             top.left = center.right;
@@ -145,18 +150,98 @@ namespace AVL_Tree
             return center;
         }
 
-        Node<T> RotateLeftRigh(Node<T> top)
+        Node<T> RotateLeftRight(Node<T> top)
         {
             Node<T> center = top.left;
             top.left = RotateLeft(center);
-            return RotateRigh(top);
+            return RotateRight(top);
         }
 
-        Node<T> RotateRighLeft(Node<T> top)
+        Node<T> RotateRightLeft(Node<T> top)
         {
             Node<T> center = top.right;
-            top.right = RotateRigh(center);
+            top.right = RotateRight(center);
             return RotateLeft(top);
+        }
+
+        Node<T> RecursionDelete(Node<T> current, T target)
+        {
+            Node<T> parent;
+            if (current == null)
+            { 
+                return null; 
+            }
+            else
+            {
+                int compRes = comp(target, current.value);
+
+                //left subtree
+                if (compRes < 0)
+                {
+                    current.left = RecursionDelete(current.left, target);
+                    if (current.BalanceFactor == -2)//here
+                    {
+                        if (current.right.BalanceFactor <= 0)
+                        {
+                            current = RotateLeft(current);
+                        }
+                        else
+                        {
+                            current = RotateRightLeft(current);
+                        }
+                    }
+                }
+                //right subtree
+                else if (compRes > 0)
+                {
+                    current.right = RecursionDelete(current.right, target);
+                    if (current.BalanceFactor == 2)
+                    {
+                        if (current.left.BalanceFactor >= 0)
+                        {
+                            current = RotateRight(current);
+                        }
+                        else
+                        {
+                            current = RotateLeftRight(current);
+                        }
+                    }
+                }
+                //if target is found
+                else
+                {
+                    if (current.right != null)
+                    {
+                        //delete its inorder successor
+                        parent = current.right;
+                        while (parent.left != null)
+                        {
+                            parent = parent.left;
+                        }
+
+                        current.value = parent.value;
+                        current.right = RecursionDelete(current.right, parent.value);
+
+                        if (current.BalanceFactor == 2)//rebalancing
+                        {
+                            if (current.left.BalanceFactor >= 0)
+                            {
+                                current = RotateRight(current);
+                            }
+                            else 
+                            {
+                                current = RotateLeftRight(current); 
+                            }
+                        }
+                    }
+                    else
+                    {   //if current.left != null
+                        return current.left;
+                    }
+                }
+            }
+
+            return current;
         }
 
         void OutputInOrder(Node<T> node)
