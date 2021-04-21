@@ -121,5 +121,19 @@ namespace AVL_Tree
             center.right = top;
             return center;
         }
+
+        Node RotateLeftRigh(Node top)
+        {
+            Node center = top.left;
+            top.left = RotateLeft(center);
+            return RotateRigh(top);
+        }
+
+        Node RotateRighLeft(Node top)
+        {
+            Node center = top.right;
+            top.right = RotateRigh(center);
+            return RotateLeft(top);
+        }
     }
 }
