@@ -16,15 +16,20 @@ namespace AVL_Tree
             return tree;
         }
 
-        static void OutputTree(Tree<int> tree)
+        static void PrintSorted(Tree<int> tree) // 
         {
-            Console.WriteLine("Tree (Inorder):");
+            Console.Write("Tree (ascending order):");
             tree.OutputInOrder();
+            Console.WriteLine();
+
+            Console.Write("Tree (descending order):");
+            tree.OutputReverseInOrder();
+            Console.WriteLine();
         }
         static void Main(string[] args)
         {
             var tree = BuildTree();
-            OutputTree(tree);
+            PrintSorted(tree);
         }
     }
 }

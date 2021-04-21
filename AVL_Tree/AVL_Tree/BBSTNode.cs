@@ -49,6 +49,10 @@ namespace AVL_Tree
         {
             OutputInOrder(root);
         }
+        public void OutputReverseInOrder()
+        {
+            OutputReverseInOrder(root);
+        }
 
         public void Add(T value)
         {
@@ -157,6 +161,16 @@ namespace AVL_Tree
                 OutputInOrder(node.left);
                 Console.Write($"{node.value} ");
                 OutputInOrder(node.right);
+            }
+        }
+
+        void OutputReverseInOrder(Node<T> node)
+        {
+            if(node != null)
+            {
+                OutputReverseInOrder(node.right);
+                Console.Write($"{node.value} ");
+                OutputReverseInOrder(node.left);
             }
         }
     }
