@@ -4,9 +4,9 @@ namespace AVL_Tree
 {
     class Program
     {
-        static Tree BuildTree()
+        static Tree<int> BuildTree()
         {
-            var tree = new Tree();
+            var tree = new Tree<int>((v1, v2) => v1 - v2);
             tree.Add(17);
             tree.Add(25);
             tree.Add(30);
@@ -16,9 +16,9 @@ namespace AVL_Tree
             return tree;
         }
 
-        static void OutputTree(Tree tree)
+        static void OutputTree(Tree<int> tree)
         {
-            Console.WriteLine("Tree (in order):");
+            Console.WriteLine("Tree (Inorder):");
             tree.OutputInOrder();
         }
         static void Main(string[] args)
