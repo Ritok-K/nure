@@ -176,6 +176,18 @@ namespace AVL_Tree
             return current;
         }
 
+        public Tree<T> Clone()
+        {
+            var cloneTree = new Tree<T>(comp);
+
+            Traverse(TraverseMethod.InOrder, (n) =>
+            {
+                cloneTree.Add(n.value);
+            });
+
+            return cloneTree;
+        }
+
         Node<T> RecursiveAdd(Node<T> current, Node<T> node)
         {
             if (current == null)

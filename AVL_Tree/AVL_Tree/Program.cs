@@ -83,16 +83,22 @@ namespace AVL_Tree
             }
         }
 
-        static void FindSecondLargestKey(Tree<int> tree)
+        static void FindSecondLargestKey(Tree<int> tree) // task 7
         {
             var node = tree.FindSecondMax();
             Console.WriteLine($"Second largest key is {node.Value}");
         }
 
-        static void Delete(Tree<int> tree)
+        static  void CloneTree(Tree<int> tree) // task 8
         {
-            tree.Delete(40);
-           Console.WriteLine($"Tree after delete: {tree.OutputInOrder()}");
+            var cloneTree = tree.Clone();
+
+            if (cloneTree.IsEmpty)
+            {
+               Console.WriteLine("Tree is empty.");
+            }
+
+            Console.WriteLine($"Clone tree: {cloneTree.OutputInOrder()}");
         }
 
         static void Main(string[] args)
@@ -108,9 +114,9 @@ namespace AVL_Tree
 
             FindSecondLargestKey(tree);
 
-            DeleteEvenKeys(tree);
+            CloneTree(tree);
 
-           // Delete(tree);
+            DeleteEvenKeys(tree);
         }
     }
 }
