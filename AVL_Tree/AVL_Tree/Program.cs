@@ -18,13 +18,8 @@ namespace AVL_Tree
 
         static void PrintSorted(Tree<int> tree) // task 1
         {
-            Console.Write("Tree (ascending order):");
-            tree.OutputInOrder();
-            Console.WriteLine();
-
-            Console.Write("Tree (descending order):");
-            tree.OutputReverseInOrder();
-            Console.WriteLine();
+            Console.WriteLine($"Tree (ascending order): {tree.OutputInOrder()}");
+            Console.WriteLine($"Tree (descending order): {tree.OutputReverseInOrder()}");
         }
 
         static void LeftCountNodeOutput(Tree<int> tree) // task 2 (CountNode)
@@ -36,7 +31,7 @@ namespace AVL_Tree
         static void Delete(Tree<int> tree)
         {
             tree.Delete(40);
-            tree.OutputInOrder();
+           Console.WriteLine($"Tree after delete: {tree.OutputInOrder()}");
         }
 
         static void Main(string[] args)

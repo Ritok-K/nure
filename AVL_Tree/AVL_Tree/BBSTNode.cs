@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace AVL_Tree
 {
+    public enum TraverseMethod
+    {
+        PreOrder,
+        InOrder,
+        ReverseInOrder,
+        PostOrder,
+    }
+
     public class Tree<T>
     {
         public class Node<T>
@@ -38,6 +46,7 @@ namespace AVL_Tree
         }
 
         public delegate int Comparator(T v1, T v2); // returns positive if v1 > v2, negative if v1 < v2 or 0 
+        public delegate void Traverser(Node<T> node); // processes traversing node
 
         Comparator comp;
         Node<T> root;
@@ -50,13 +59,55 @@ namespace AVL_Tree
         public Node<T> Root { get => root; }
         public bool IsEmpty { get => root == null; }
 
-        public void OutputInOrder()
+        public void Traverse(TraverseMethod method, Traverser traverser)
         {
-            OutputInOrder(root);
+            Traverse(root, method, traverser);
         }
-        public void OutputReverseInOrder()
+
+        public void Traverse(Node<T> node, TraverseMethod method, Traverser traverser)
         {
-            OutputReverseInOrder(root);
+            if (node != null)
+            {
+                switch (method)
+                {
+                    case TraverseMethod.PreOrder:
+                        traverser(node);
+                        Traverse(node.left, method, traverser);
+                        Traverse(node.right, method, traverser);
+                        break;
+                    case TraverseMethod.InOrder:
+                        Traverse(node.left, method, traverser);
+                        traverser(node);
+                        Traverse(node.right, method, traverser);
+                        break;
+                    case TraverseMethod.ReverseInOrder:
+                        Traverse(node.right, method, traverser);
+                        traverser(node);
+                        Traverse(node.left, method, traverser);
+                        break;
+                    case TraverseMethod.PostOrder:
+                        Traverse(node.left, method, traverser);
+                        Traverse(node.right, method, traverser);
+                        traverser(node);
+                        break;
+                }
+            }
+        }
+
+        public string OutputInOrder()
+        {
+            string res = "";
+            Traverse(TraverseMethod.InOrder, (n) => { res = $"{res} {n.value}"; });
+
+            return res;
+        }
+
+        public string OutputReverseInOrder()
+        {
+            string res = "";
+            Traverse(TraverseMethod.ReverseInOrder, (n) => { res = $"{res} {n.value}"; });
+
+            return res;
         }
 
         public void Add(T value)
@@ -242,26 +293,6 @@ namespace AVL_Tree
             }
 
             return current;
-        }
-
-        void OutputInOrder(Node<T> node)
-        {
-            if (node != null)
-            {
-                OutputInOrder(node.left);
-                Console.Write($"{node.value} ");
-                OutputInOrder(node.right);
-            }
-        }
-
-        void OutputReverseInOrder(Node<T> node)
-        {
-            if(node != null)
-            {
-                OutputReverseInOrder(node.right);
-                Console.Write($"{node.value} ");
-                OutputReverseInOrder(node.left);
-            }
         }
     }
 }
