@@ -47,6 +47,8 @@ namespace AVL_Tree
 
         public delegate int Comparator(T v1, T v2); // returns positive if v1 > v2, negative if v1 < v2 or 0 
         public delegate void Traverser(Node<T> node); // processes traversing node
+        public delegate bool ContinuableTraverser(Node<T> node); // processes traversing node,
+                                                                 // optimized versiom: when traverser returns false - tree stops traversing.
 
         Comparator comp;
         Node<T> root;
@@ -61,37 +63,51 @@ namespace AVL_Tree
 
         public void Traverse(TraverseMethod method, Traverser traverser)
         {
-            Traverse(root, method, traverser);
+            Traverse(root, method, (n) => { traverser(n); return true; });
+        }
+
+        public bool Traverse(TraverseMethod method, ContinuableTraverser traverser)
+        {
+            return Traverse(root, method, traverser);
         }
 
         public void Traverse(Node<T> node, TraverseMethod method, Traverser traverser)
         {
+            Traverse(node, method, (n) => { traverser(n); return true; });
+        }
+
+        public bool Traverse(Node<T> node, TraverseMethod method, ContinuableTraverser traverser)
+        {
+            bool res = true;
+
             if (node != null)
             {
                 switch (method)
                 {
                     case TraverseMethod.PreOrder:
-                        traverser(node);
-                        Traverse(node.left, method, traverser);
-                        Traverse(node.right, method, traverser);
+                        res = res && traverser(node);
+                        res = res && Traverse(node.left, method, traverser);
+                        res = res && Traverse(node.right, method, traverser);
                         break;
                     case TraverseMethod.InOrder:
-                        Traverse(node.left, method, traverser);
-                        traverser(node);
-                        Traverse(node.right, method, traverser);
+                        res = res && Traverse (node.left, method, traverser);
+                        res = res && traverser(node);
+                        res = res && Traverse(node.right, method, traverser);
                         break;
                     case TraverseMethod.ReverseInOrder:
-                        Traverse(node.right, method, traverser);
-                        traverser(node);
-                        Traverse(node.left, method, traverser);
+                        res = res && Traverse(node.right, method, traverser);
+                        res = res && traverser(node);
+                        res = res && Traverse(node.left, method, traverser);
                         break;
                     case TraverseMethod.PostOrder:
-                        Traverse(node.left, method, traverser);
-                        Traverse(node.right, method, traverser);
-                        traverser(node);
+                        res = res && Traverse(node.left, method, traverser);
+                        res = res && Traverse(node.right, method, traverser);
+                        res = res && traverser(node);
                         break;
                 }
             }
+
+            return res;
         }
 
         public string OutputInOrder()
@@ -130,13 +146,7 @@ namespace AVL_Tree
 
         public bool Contains(Tree<T> tree)
         {
-            bool res = true;
-
-            tree.Traverse(TraverseMethod.InOrder, (n) =>
-            {
-                res = res && (Find(n.value) != null);
-            });
-
+            bool res = tree.Traverse(TraverseMethod.InOrder, (n) => (Find(n.value) != null));
             return res;
         }
 
