@@ -83,6 +83,12 @@ namespace AVL_Tree
             }
         }
 
+        static void FindSecondLargestKey(Tree<int> tree)
+        {
+            var node = tree.FindSecondMax();
+            Console.WriteLine($"Second largest key is {node.Value}");
+        }
+
         static void Delete(Tree<int> tree)
         {
             tree.Delete(40);
@@ -99,6 +105,8 @@ namespace AVL_Tree
             RightSumKeys(tree);
 
             FindMiddleKey(tree);
+
+            FindSecondLargestKey(tree);
 
             DeleteEvenKeys(tree);
 

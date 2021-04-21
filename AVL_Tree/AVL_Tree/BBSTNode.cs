@@ -160,6 +160,22 @@ namespace AVL_Tree
             return current;
         }
 
+        public Node<T> FindSecondMax()
+        {
+            if (IsEmpty || root.right == null)
+            {
+                return null;
+            }
+
+            var current = root;
+            while (current.right.right != null)
+            {
+                current = current.right;
+            }
+
+            return current;
+        }
+
         Node<T> RecursiveAdd(Node<T> current, Node<T> node)
         {
             if (current == null)
