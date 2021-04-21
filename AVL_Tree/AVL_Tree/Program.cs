@@ -29,6 +29,14 @@ namespace AVL_Tree
             Console.WriteLine($"The number of left son nodes is: {number}");
         }
 
+        static void RightSumKeys(Tree<int> tree) // task 3 (Sum of Right Son Nodes)
+        {
+            int res = 0;
+            tree.Traverse(tree.Root.Right, TraverseMethod.PreOrder, (n) => { res += n.Value; });
+
+            Console.WriteLine($"Sum keys of right son nodes: {res}");
+        }
+
         static void Delete(Tree<int> tree)
         {
             tree.Delete(40);
@@ -41,6 +49,8 @@ namespace AVL_Tree
             PrintSorted(tree);
 
             LeftCountNodeOutput(tree);
+
+            RightSumKeys(tree);
 
             Delete(tree);
         }
