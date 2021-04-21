@@ -12,6 +12,7 @@ namespace AVL_Tree
             tree.Add(30);
             tree.Add(35);
             tree.Add(40);
+            tree.Add(40); // attempt to insert duplicate
 
             return tree;
         }
