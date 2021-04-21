@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AVL_Tree
 {
@@ -37,6 +38,51 @@ namespace AVL_Tree
             Console.WriteLine($"Sum keys of right son nodes: {res}");
         }
 
+        static void DeleteEvenKeys(Tree<int> tree) // task 4
+        {
+            var list = new List<int>();
+            tree.Traverse(TraverseMethod.InOrder, (n) =>
+            {
+                if (n.Value % 2 == 0)
+                {
+                    list.Add(n.Value);
+                }
+            });
+
+            foreach(var i in list)
+            {
+                tree.Delete(i);
+            }
+
+            Console.WriteLine($"Tree after deletinh even keys: {tree.OutputInOrder()}");
+        }
+
+        static void FindMiddleKey(Tree<int> tree) // task 5
+        {
+            var maxNode = tree.FindMax();
+            var minNode = tree.FindMin();
+
+            if(maxNode != null && minNode!= null)
+            {
+                float middleValue = (maxNode.Value + minNode.Value) / 2.0f; // 2.0f - make 2 into float
+
+                Tree<int>.Node<int> middleNode = minNode;
+                tree.Traverse(TraverseMethod.InOrder, (n) =>
+                {
+                    float deltaN = Math.Abs(n.Value - middleValue);
+                    float deltaM = Math.Abs(middleNode.Value - middleValue);
+
+                    if(deltaN < deltaM)
+                    {
+                        middleNode = n;
+                    }
+
+                });
+
+                Console.WriteLine($"The middle key is: {middleNode.Value}");
+            }
+        }
+
         static void Delete(Tree<int> tree)
         {
             tree.Delete(40);
@@ -52,7 +98,11 @@ namespace AVL_Tree
 
             RightSumKeys(tree);
 
-            Delete(tree);
+            FindMiddleKey(tree);
+
+            DeleteEvenKeys(tree);
+
+           // Delete(tree);
         }
     }
 }

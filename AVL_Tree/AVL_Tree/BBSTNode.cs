@@ -128,6 +128,38 @@ namespace AVL_Tree
             root = RecursionDelete(root, value);
         }
 
+        public Node<T> FindMin()
+        {
+            if(IsEmpty)
+            {
+                return null;
+            }
+
+            var current = root;
+            while(current.left != null)
+            {
+                current = current.left;
+            }
+
+            return current;
+        }
+
+        public Node<T> FindMax()
+        {
+            if(IsEmpty)
+            {
+                return null;
+            }
+
+            var current = root;
+            while(current.right != null)
+            {
+                current = current.right;
+            }
+
+            return current;
+        }
+
         Node<T> RecursiveAdd(Node<T> current, Node<T> node)
         {
             if (current == null)
