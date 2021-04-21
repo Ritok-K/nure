@@ -37,6 +37,11 @@ namespace AVL_Tree
         public Node Root { get => root; }
         public bool IsEmpty { get => root == null; }
 
+        public void OutputInOrder()
+        {
+            OutputInOrder(root);
+        }
+
         public void Add(int value)
         {
             var node = new Node(value);
@@ -134,6 +139,16 @@ namespace AVL_Tree
             Node center = top.right;
             top.right = RotateRigh(center);
             return RotateLeft(top);
+        }
+
+        void OutputInOrder(Node node)
+        {
+            if (node != null)
+            {
+                OutputInOrder(node.left);
+                Console.Write($"{node.value} ");
+                OutputInOrder(node.right);
+            }
         }
     }
 }
