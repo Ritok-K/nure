@@ -33,5 +33,8 @@ namespace AVL_Tree
         }
 
         Node root;
+
+        public Node Root { get => root; }
+        public bool IsEmpty { get => root == null; }
     }
 }
