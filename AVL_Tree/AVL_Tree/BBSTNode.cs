@@ -72,5 +72,38 @@ namespace AVL_Tree
 
             return current;
         }
+
+        Node AutoBalance(Node top)
+        {
+            var balanceFactor = top.BalanceFactor;
+            if (balanceFactor < -1)
+            {
+                // right subtree is overweighted
+                var rightBalanceFactor = top.right.BalanceFactor;
+                if (rightBalanceFactor < 0)
+                {
+                    top = RotateLeft(top);
+                }
+                else
+                {
+                    top = RotateRighLeft(top.right);
+                }
+            }
+            else if (balanceFactor > 1)
+            {
+                // left subtree is overweighted
+                var leftBalanceFactor = top.left.BalanceFactor;
+                if (leftBalanceFactor > 0)
+                {
+                    top = RotateRigh(top);
+                }
+                else
+                {
+                    top = RotateLeftRigh(top);
+                }
+            }
+
+            return top;
+        }
     }
 }
