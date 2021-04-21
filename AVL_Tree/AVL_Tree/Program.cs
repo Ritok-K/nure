@@ -89,7 +89,7 @@ namespace AVL_Tree
             Console.WriteLine($"Second largest key is {node.Value}");
         }
 
-        static  void CloneTree(Tree<int> tree) // task 8
+        static void CloneTree(Tree<int> tree) // task 8
         {
             var cloneTree = tree.Clone();
 
@@ -99,6 +99,20 @@ namespace AVL_Tree
             }
 
             Console.WriteLine($"Clone tree: {cloneTree.OutputInOrder()}");
+        }
+
+        static void Insert(Tree<int> tree) // task 9 (TODO: fix add)
+        {
+            var newTree = new Tree<int>((v1, v2) => v1 - v2);
+            newTree.Add(23);
+            newTree.Add(2);
+            newTree.Add(3);
+            newTree.Add(56);
+            newTree.Add(14);
+
+           // newTree.Insert(tree);
+
+            Console.WriteLine($"Tree after insert: {newTree.OutputInOrder()}");
         }
 
         static void Main(string[] args)
@@ -115,6 +129,8 @@ namespace AVL_Tree
             FindSecondLargestKey(tree);
 
             CloneTree(tree);
+
+            Insert(tree);
 
             DeleteEvenKeys(tree);
         }

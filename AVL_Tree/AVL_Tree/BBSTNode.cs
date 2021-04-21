@@ -188,6 +188,14 @@ namespace AVL_Tree
             return cloneTree;
         }
 
+        public void Insert(Tree<T> tree)
+        {
+            tree.Traverse(TraverseMethod.InOrder, (n) =>
+            {
+                Add(n.value);
+            });
+        }
+
         Node<T> RecursiveAdd(Node<T> current, Node<T> node)
         {
             if (current == null)
