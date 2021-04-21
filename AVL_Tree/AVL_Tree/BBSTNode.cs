@@ -49,5 +49,28 @@ namespace AVL_Tree
                 root = RecursiveAdd(root, node);
             }
         }
+
+        Node RecursiveAdd(Node current, Node node)
+        {
+            if (current == null)
+            {
+                current = node;
+            }
+            else
+            {
+                if (node.value < current.value)
+                {
+                    current.left = RecursiveAdd(current.left, node);
+                    current = AutoBalance(current);
+                }
+                else if (node.value > current.value)
+                {
+                    current.right = RecursiveAdd(current.right, node);
+                    current = AutoBalance(current);
+                }
+            }
+
+            return current;
+        }
     }
 }
