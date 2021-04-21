@@ -155,6 +155,11 @@ namespace AVL_Tree
             return RecursiveFind(root, value);
         }
 
+        public Node<T> FindParent(T value)
+        {
+            return RecursiveFindParent(null, root, value);
+        }
+
         public Node<T> FindMin()
         {
             if(IsEmpty)
@@ -407,6 +412,28 @@ namespace AVL_Tree
             }
 
             return current;
+        }
+
+        Node<T> RecursiveFindParent(Node<T> parent, Node<T> current, T target)
+        {
+            if (current != null)
+            {
+                int compRes = comp(target, current.value);
+                if (compRes < 0)
+                {
+                    return RecursiveFindParent(current, current.left, target);
+                }
+                else if (compRes > 0)
+                {
+                    return RecursiveFindParent(current, current.right, target);
+                }
+                else
+                {
+                    return parent;
+                }
+            }
+
+            return null;
         }
     }
 }

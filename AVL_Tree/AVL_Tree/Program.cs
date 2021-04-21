@@ -54,7 +54,7 @@ namespace AVL_Tree
                 tree.Delete(i);
             }
 
-            Console.WriteLine($"Tree after deletinh even keys: {tree.OutputInOrder()}");
+            Console.WriteLine($"Tree after deleting even keys: {tree.OutputInOrder()}");
         }
 
         static void FindMiddleKey(Tree<int> tree) // task 5
@@ -125,6 +125,15 @@ namespace AVL_Tree
             Console.WriteLine($"Tree cotains modified clone: {contains}");
         }
 
+        static void FindFather(Tree<int> tree) // task 14
+        {
+            var fatherNode = tree.FindParent(30);
+            Console.WriteLine($"Father of 30 is {fatherNode?.Value ?? -10000}");
+
+            fatherNode = tree.FindParent(50);
+            Console.WriteLine($"Father of 30 is {fatherNode?.Value ?? -10000}");
+        }
+
         static void Main(string[] args)
         {
             var tree = BuildTree();
@@ -143,6 +152,8 @@ namespace AVL_Tree
             InsertTree(tree);
 
             ContainsTree(tree);
+
+            FindFather(tree);
 
             DeleteEvenKeys(tree);
         }
