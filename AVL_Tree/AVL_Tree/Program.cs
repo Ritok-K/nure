@@ -16,7 +16,7 @@ namespace AVL_Tree
             return tree;
         }
 
-        static void PrintSorted(Tree<int> tree) // 
+        static void PrintSorted(Tree<int> tree) // task 1
         {
             Console.Write("Tree (ascending order):");
             tree.OutputInOrder();
@@ -26,10 +26,18 @@ namespace AVL_Tree
             tree.OutputReverseInOrder();
             Console.WriteLine();
         }
+
+        static void LeftCountNodeOutput(Tree<int> tree) // task 2 (CountNode)
+        {
+            int number = tree.Root.LeftSubTreeCount;
+            Console.WriteLine($"The number of left son nodes is: {number}");
+        }
+
         static void Main(string[] args)
         {
             var tree = BuildTree();
             PrintSorted(tree);
+            LeftCountNodeOutput(tree);
         }
     }
 }

@@ -30,6 +30,11 @@ namespace AVL_Tree
             public int RightSubTreeHeight { get => (right != null) ? right.Height : 0; }
 
             public int BalanceFactor { get => LeftSubTreeHeight - RightSubTreeHeight; }
+
+            public int Count { get => 1 + LeftSubTreeCount + RightSubTreeCount; }
+            public int LeftSubTreeCount { get => (left != null) ? left.Count : 0; }
+            public int RightSubTreeCount { get => (right != null) ? right.Count : 0; }
+
         }
 
         public delegate int Comparator(T v1, T v2); // returns positive if v1 > v2, negative if v1 < v2 or 0 
