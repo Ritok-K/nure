@@ -36,5 +36,18 @@ namespace AVL_Tree
 
         public Node Root { get => root; }
         public bool IsEmpty { get => root == null; }
+
+        public void Add(int value)
+        {
+            var node = new Node(value);
+            if (IsEmpty)
+            {
+                root = node;
+            }
+            else
+            {
+                root = RecursiveAdd(root, node);
+            }
+        }
     }
 }
