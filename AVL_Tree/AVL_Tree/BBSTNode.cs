@@ -233,7 +233,7 @@ namespace AVL_Tree
                 }
                 else
                 {
-                    top = RotateRightLeft(top.right);
+                    top = RotateRightLeft(top);
                 }
             }
             else if (balanceFactor > 1)

@@ -101,7 +101,7 @@ namespace AVL_Tree
             Console.WriteLine($"Clone tree: {cloneTree.OutputInOrder()}");
         }
 
-        static void Insert(Tree<int> tree) // task 9 (TODO: fix add)
+        static void InsertTree(Tree<int> tree) // task 9
         {
             var newTree = new Tree<int>((v1, v2) => v1 - v2);
             newTree.Add(23);
@@ -110,7 +110,7 @@ namespace AVL_Tree
             newTree.Add(56);
             newTree.Add(14);
 
-           // newTree.Insert(tree);
+            newTree.Insert(tree);
 
             Console.WriteLine($"Tree after insert: {newTree.OutputInOrder()}");
         }
@@ -130,7 +130,7 @@ namespace AVL_Tree
 
             CloneTree(tree);
 
-            Insert(tree);
+            InsertTree(tree);
 
             DeleteEvenKeys(tree);
         }
