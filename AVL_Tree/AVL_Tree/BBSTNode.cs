@@ -160,6 +160,11 @@ namespace AVL_Tree
             return RecursiveFindParent(null, root, value);
         }
 
+        public Node<T> FindCommonAncestor(T value1, T value2)
+        {
+            return RecursiveFindCommonAncestor(root, value1, value2);
+        }
+
         public Node<T> FindMin()
         {
             if(IsEmpty)
@@ -434,6 +439,43 @@ namespace AVL_Tree
             }
 
             return null;
+        }
+
+        Node<T> RecursiveFindCommonAncestor(Node<T> current, T value1, T value2)
+        {
+            if (current != null)
+            {
+                int compRes1 = comp(value1, current.value);
+                int compRes2 = comp(value2, current.value);
+
+                if (compRes1 < 0 && compRes2 < 0)
+                {
+                    current = RecursiveFindCommonAncestor(current.left, value1, value2);
+                }
+                else if (compRes1 > 0 && compRes2 > 0)
+                {
+                    current = RecursiveFindCommonAncestor(current.right, value1, value2);
+                }
+                else if (compRes1 == 0 && compRes2 == 0)
+                {
+                    // just return current, couse both values are equal and we found the node
+                }
+                else
+                {
+                    // current is candidate to be common ancestor because value1 and value2 lie on different sub-trees,
+                    // check whether tree does really contain value1 and value2 starting from current node.
+
+                    bool hasValue1 = (compRes1 == 0) || (RecursiveFind(current, value1) != null);
+                    bool hasValue2 = (compRes2 == 0) || (RecursiveFind(current, value2) != null);
+
+                    if (!hasValue1 || !hasValue2)
+                    {
+                        current = null; // tree doesn't contain one or both values, there is no common ancestor.
+                    }
+                }
+            }
+
+            return current;
         }
     }
 }

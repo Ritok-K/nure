@@ -127,11 +127,27 @@ namespace AVL_Tree
 
         static void FindFather(Tree<int> tree) // task 14
         {
-            var fatherNode = tree.FindParent(30);
-            Console.WriteLine($"Father of 30 is {fatherNode?.Value ?? -10000}");
+            var val1 = 30;
+            var val2 = 50;
+            var fatherNode = tree.FindParent(val1);
+            Console.WriteLine($"Father of {val1} is {fatherNode?.Value.ToString() ?? "absent"}");
 
-            fatherNode = tree.FindParent(50);
-            Console.WriteLine($"Father of 30 is {fatherNode?.Value ?? -10000}");
+            fatherNode = tree.FindParent(val2);
+            Console.WriteLine($"Father of {val2} is {fatherNode?.Value.ToString() ?? "absent"}");
+        }
+
+        static void FindCommonAncestor(Tree<int> tree) // task 15
+        {
+            var val1 = 17;
+            var val2 = 40;
+
+            var ancestor = tree.FindCommonAncestor(val1, val2);
+            Console.WriteLine($"Common ancestor of {val1} and {val2} is {ancestor?.Value.ToString() ?? "none"}");
+
+            val1 = 30;
+            val2 = 40;
+            ancestor = tree.FindCommonAncestor(val1, val2);
+            Console.WriteLine($"Common ancestor of {val1} and {val2} is {ancestor?.Value.ToString() ?? "none"}");
         }
 
         static void Main(string[] args)
@@ -154,6 +170,8 @@ namespace AVL_Tree
             ContainsTree(tree);
 
             FindFather(tree);
+
+            FindCommonAncestor(tree);
 
             DeleteEvenKeys(tree);
         }
