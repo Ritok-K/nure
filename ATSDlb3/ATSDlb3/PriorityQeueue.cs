@@ -58,6 +58,14 @@ namespace ATSDlb3
             size++;
         }
 
+        public void PrintQueue()
+        {
+            for(int i = 0; i < size; i++)
+            {
+                Console.WriteLine($"{items[i].value}, priority: {items[i].priority}");
+            }
+        }
+
         void ShiftUp(int index)
         {
             while (index > 0 && items[Parent(index)].priority < items[index].priority)
