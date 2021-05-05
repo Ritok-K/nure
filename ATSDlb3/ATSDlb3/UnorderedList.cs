@@ -98,8 +98,8 @@ namespace ATSDlb3
         {
             int largest = root;
             // Инициализируем наибольший элемент как корень
-            int leftEl = 2 * root + 1; // left = 2*i + 1
-            int rightEl = 2 * root + 2; // right = 2*i + 2
+            int leftEl = 2 * root + 1; // left = 2*root + 1
+            int rightEl = 2 * root + 2; // right = 2*root + 2
 
             // Если левый дочерний элемент больше корня
             if (leftEl < size && nodes[leftEl] > nodes[largest])
