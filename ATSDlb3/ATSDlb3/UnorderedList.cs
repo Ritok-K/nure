@@ -20,6 +20,21 @@ namespace ATSDlb3
                 return end == 0;
             }
         }
+        public int Length
+        {
+            get
+            {
+                return end;
+            }
+        }
+        public bool IsFull
+        {
+            get
+            {
+                return end == nodes.Length;
+            }
+        }
+        
 
         int[] nodes;
         int end;
