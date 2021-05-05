@@ -34,7 +34,16 @@ namespace ATSDlb3
                 return end == nodes.Length;
             }
         }
-        
+        public void Add(int value)
+        {
+            if (end >= nodes.Length)
+            {
+                throw new Exception("Out of memory.");
+            }
+
+            nodes[end] = value;
+            end++;
+        }
 
         int[] nodes;
         int end;
