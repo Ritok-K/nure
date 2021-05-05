@@ -13,6 +13,13 @@ namespace ATSDlb3
             nodes = new int[maxSize];
             end = 0;
         }
+        public bool IsEmpty
+        {
+            get
+            {
+                return end == 0;
+            }
+        }
 
         int[] nodes;
         int end;
