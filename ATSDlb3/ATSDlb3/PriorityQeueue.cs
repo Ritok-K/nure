@@ -20,6 +20,33 @@ namespace ATSDlb3
             end = 0;
         }
 
+        public int Length
+        {
+            get
+            {
+                return end;
+            }
+        }
+
+
+        public bool IsEmpty
+        {
+            get
+            {
+                return Length == 0;
+            }
+        }
+
+        public bool IsFull
+        {
+            get
+            {
+                return end == items.Length;
+            }
+        }
+
+
+
         PriorityItem[] items;
         int end;
     }
