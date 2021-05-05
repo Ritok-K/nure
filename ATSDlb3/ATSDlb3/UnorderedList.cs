@@ -34,6 +34,19 @@ namespace ATSDlb3
                 return end == nodes.Length;
             }
         }
+
+        public int this[int index]
+        {
+            get
+            {
+                if(index < 0 || index >=Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return nodes[index];
+            }
+        }
+
         public void Add(int value)
         {
             if (end >= nodes.Length)
