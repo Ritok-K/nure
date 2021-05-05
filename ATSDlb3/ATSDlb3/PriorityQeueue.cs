@@ -8,6 +8,12 @@ namespace ATSDlb3
 {
     struct PriorityItem
     {
+        public PriorityItem(int value, int priority)
+        {
+            this.value = value;
+            this.priority = priority;
+        }
+
         public int value;
         public int priority;
     }

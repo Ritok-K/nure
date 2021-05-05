@@ -4,7 +4,7 @@ namespace ATSDlb3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Part1()
         {
             UnorderedList list = new UnorderedList(7);
             list.Add(2);
@@ -22,10 +22,24 @@ namespace ATSDlb3
             Console.WriteLine("HeapSorted list");
             list.HeapSort();
             list.Print();
+        }
 
+        static void Part2()
+        {
+            PriorityQeueue queue = new PriorityQeueue(7);
+            queue.Enqueue(new PriorityItem(2, 1));
+            queue.Enqueue(new PriorityItem(3, 2));
+            queue.Enqueue(new PriorityItem(-3, 4));
+            queue.Enqueue(new PriorityItem(-5, 3));
+            queue.Enqueue(new PriorityItem(8, 5));
 
+            queue.PrintQueue();
+        }
 
-
+        static void Main(string[] args)
+        {
+            //Part1();
+            Part2();
         }
     }
 }
