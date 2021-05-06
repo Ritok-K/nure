@@ -64,6 +64,29 @@ namespace ATSDlb3
             size++;
         }
 
+        public PriorityItem DequeueMax()
+        {
+            if(IsEmpty)
+            {
+                throw new Exception("The queue is empty.");
+            }
+
+            PriorityItem res = items[0];
+
+            if(size == 1)
+            {
+                size--;
+
+            }
+            else
+            {
+                items[0] = items[size - 1];
+                size--;
+            }
+
+            return res;
+        }
+
         public void PrintQueue()
         {
             for(int i = 0; i < size; i++)
@@ -74,7 +97,7 @@ namespace ATSDlb3
 
         void ShiftUp(int index)
         {
-            while (index > 0 && items[Parent(index)].priority < items[index].priority)
+            while (index > 0 && items[Parent(index)].priority > items[index].priority)
             {
                 // Swap parent and current node
                 Swap(Parent(index), index);
@@ -83,10 +106,46 @@ namespace ATSDlb3
                 index = Parent(index);
             }
         }
-        
+
+        void ShiftDown(int i)
+        {
+            int maxIndex = i;
+
+            // Left Child
+            int l = LeftChild(i);
+
+            if (l < size && items[l].priority < items[maxIndex].priority)
+            {
+                maxIndex = l;
+            }
+
+            // Right Child
+            int r = RightChild(i);
+
+            if (r < size && items[r].priority < items[maxIndex].priority)
+            {
+                maxIndex = r;
+            }
+
+            // If i not same as maxIndex
+            if (i != maxIndex)
+            {
+                Swap(i, maxIndex);
+                ShiftDown(maxIndex);
+            }
+        }
+
         int Parent(int i)
         {
             return (i - 1) / 2;
+        }
+        int LeftChild(int i)
+        {
+            return ((2 * i) + 1);
+        }
+        int RightChild(int i)
+        {
+            return ((2 * i) + 2);
         }
 
         void Swap(int i, int j)
