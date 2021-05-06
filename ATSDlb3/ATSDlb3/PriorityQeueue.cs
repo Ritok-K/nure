@@ -82,6 +82,8 @@ namespace ATSDlb3
             {
                 items[0] = items[size - 1];
                 size--;
+
+                ShiftDown(0);
             }
 
             return res;

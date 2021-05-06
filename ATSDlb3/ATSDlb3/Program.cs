@@ -33,7 +33,17 @@ namespace ATSDlb3
             queue.Enqueue(new PriorityItem(-5, 3));
             queue.Enqueue(new PriorityItem(8, 5));
 
+            Console.WriteLine("Queue content: ");
             queue.PrintQueue();
+
+            Console.WriteLine();
+            Console.WriteLine("Queue dequeuing by one item: ");
+            while (!queue.IsEmpty)
+            {
+                PriorityItem res = queue.DequeueMax();
+                Console.WriteLine($"{res.value}, priority: {res.priority}.");
+            }
+
         }
 
         static void Main(string[] args)
