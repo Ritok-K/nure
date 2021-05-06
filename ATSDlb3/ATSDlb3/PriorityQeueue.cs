@@ -26,6 +26,17 @@ namespace ATSDlb3
             size = 0;
         }
 
+        public PriorityQeueue(PriorityQeueue src)
+        {
+            size = src.size;
+
+            items = new PriorityItem[src.items.Length];
+            for(int i = 0; i < src.size; i++)
+            {
+                items[i] = src.items[i];
+            }
+        }
+
         public int Length
         {
             get
