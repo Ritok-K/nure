@@ -225,5 +225,24 @@ namespace PT2
             var foundNode = FindNode(data);
             Remove(foundNode);
         }
+
+        public void Print_asc()
+        {
+            Print_asc(RootNode);
+            Console.WriteLine();
+        }
+
+        public void Print_asc(BSTNode<T> node)
+        {
+            if(node == null)
+            {
+                return;
+            }
+
+            Print_asc(node.LeftNode);
+            Console.Write($"{node.Data} ");
+            Print_asc(node.RightNode);
+        }
+
     }
 }

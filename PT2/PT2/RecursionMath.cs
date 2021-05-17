@@ -44,10 +44,14 @@ namespace PT2
                 throw new ArgumentNullException();
             }
 
-            Console.WriteLine(node.Value);
+            Console.Write($"{node.Value} ");
             if(node.Next != null)
             {
                 PrintList(node.Next);
+            }
+            else
+            {
+                Console.WriteLine();
             }
         }
 
@@ -58,10 +62,14 @@ namespace PT2
                 throw new ArgumentNullException();
             }
 
-            Console.WriteLine(node.Value);
+            Console.Write($"{node.Value} ");
             if (node.Previous != null)
             {
                 PrintListReverse(node.Previous);
+            }
+            else
+            {
+                Console.WriteLine();
             }
         }
     }
