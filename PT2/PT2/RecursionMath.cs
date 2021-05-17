@@ -26,5 +26,29 @@ namespace PT2
 
             throw new ArgumentException();
         }
+
+        static public int Sum(LinkedListNode<int> node)
+        {
+            if(node == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return node.Next == null ? node.Value : node.Value + Sum(node.Next);
+        }
+
+        static public void PrintList(LinkedListNode<int> node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            Console.WriteLine(node.Value);
+            if(node.Next != null)
+            {
+                PrintList(node.Next);
+            }
+        }
     }
 }
