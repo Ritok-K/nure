@@ -77,6 +77,21 @@ namespace PT2
             var isEqual = binaryTree.IsEqual(secondBinaryTree);
             Console.WriteLine($"The result of comparison is {isEqual}.");
 
+            Console.WriteLine("task 10");
+            secondBinaryTree.MakeEmpty();
+            secondBinaryTree.Add(3);
+            secondBinaryTree.Add(8);
+            secondBinaryTree.Add(10);
+            secondBinaryTree.Add(1);
+            secondBinaryTree.Add(4);
+            secondBinaryTree.Add(6);
+            secondBinaryTree.Add(16);
+            secondBinaryTree.Add(14);
+            secondBinaryTree.Add(7);
+
+            var isSameData = binaryTree.SameData(secondBinaryTree);
+            Console.WriteLine($"The resul of data comparison is {isSameData}.");
+
             Console.WriteLine("task 11");
             var treeList = new LinkedList<int>();
             binaryTree.BST_List(treeList);

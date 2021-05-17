@@ -346,6 +346,38 @@ namespace PT2
 
             return res;
         }
+
+        public bool SameData(BST<T> otherTree)
+        { 
+            if(otherTree == null)
+            {
+                throw new ArgumentNullException();
+            }
+            
+            if(Size != otherTree.Size)
+            {
+                return false;
+            }
+
+            return SameData(RootNode, otherTree);
+        }
+
+        public bool SameData(BSTNode<T> node, BST<T> otherTree)
+        {
+            if(node == null)
+            {
+                return true;
+            }
+
+            bool res = otherTree.FindNode(node.Data) != null;
+            if(res)
+            {
+                res = SameData(node.LeftNode, otherTree) && 
+                      SameData(node.RightNode, otherTree);
+            }
+
+            return res;
+        }
     }
 
     public class BSTInteger : BST<int>
