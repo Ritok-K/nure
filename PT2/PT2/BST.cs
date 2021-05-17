@@ -232,6 +232,12 @@ namespace PT2
             Console.WriteLine();
         }
 
+        public void Print_desc()
+        {
+            Print_desc(RootNode);
+            Console.WriteLine();
+        }
+
         public void Print_asc(BSTNode<T> node)
         {
             if(node == null)
@@ -244,5 +250,16 @@ namespace PT2
             Print_asc(node.RightNode);
         }
 
+        public void Print_desc(BSTNode<T> node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            Print_desc(node.RightNode);
+            Console.Write($"{node.Data} ");
+            Print_desc(node.LeftNode);
+        }
     }
 }

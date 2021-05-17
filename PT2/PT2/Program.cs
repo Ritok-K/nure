@@ -54,6 +54,8 @@ namespace PT2
             Console.WriteLine("task 6");
             binaryTree.Print_asc();
 
+            Console.WriteLine("task 7");
+            binaryTree.Print_desc();
         }
     }
 }
