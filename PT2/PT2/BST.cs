@@ -249,12 +249,6 @@ namespace PT2
             Console.WriteLine();
         }
 
-        public void Print_desc()
-        {
-            Print_desc(RootNode);
-            Console.WriteLine();
-        }
-
         public void Print_asc(BSTNode<T> node)
         {
             if(node == null)
@@ -265,6 +259,12 @@ namespace PT2
             Print_asc(node.LeftNode);
             Console.Write($"{node.Data} ");
             Print_asc(node.RightNode);
+        }
+
+        public void Print_desc()
+        {
+            Print_desc(RootNode);
+            Console.WriteLine();
         }
 
         public void Print_desc(BSTNode<T> node)
@@ -278,6 +278,24 @@ namespace PT2
             Console.Write($"{node.Data} ");
             Print_desc(node.LeftNode);
         }
+
+        public void BST_List(LinkedList<T> list)
+        {
+            BST_List(RootNode, list);
+        }
+
+        public void BST_List(BSTNode<T> node, LinkedList<T> list)
+        {
+            if(node == null)
+            {
+                return;
+            }
+
+            BST_List(node.LeftNode, list);
+            list.AddLast(node.Data);
+            BST_List(node.RightNode, list);
+        }
+
     }
 
     public class BSTInteger : BST<int>
