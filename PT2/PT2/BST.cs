@@ -296,6 +296,10 @@ namespace PT2
             BST_List(node.RightNode, list);
         }
 
+        public void MakeEmpty()
+        {
+            RootNode = null;
+        }
     }
 
     public class BSTInteger : BST<int>

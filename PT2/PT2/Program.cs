@@ -70,6 +70,9 @@ namespace PT2
             }
             Console.WriteLine();
 
+            Console.WriteLine("task 12 (clean tree)");
+            binaryTree.MakeEmpty();
+
             Console.WriteLine("task 13");
             int treeSize = binaryTree.Size;
             Console.WriteLine($"Tree size is {treeSize}");
