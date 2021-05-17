@@ -48,7 +48,9 @@ namespace ATSDlb3
 
         static void Main(string[] args)
         {
-            //Part1();
+            Part1();
+            Console.WriteLine();
+            Console.WriteLine("Додаткове завдання.");
             Part2();
         }
     }
