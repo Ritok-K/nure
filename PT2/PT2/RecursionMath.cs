@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PT2
 {
-    class RecursionMath
+    static class RecursionMath
     {
-        static int Prod(int a, int b)
+        static public int Prod(int a, int b)
         {
             return a == 0 ? 0 : b + Prod(a - 1, b);
         }
 
-        static float Task1(int n)
+        static public float Task1(int n)
         {
             if(n == 0)
             {

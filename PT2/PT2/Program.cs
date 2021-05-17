@@ -6,7 +6,13 @@ namespace PT2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // task 1
+            float res1 = RecursionMath.Task1(3);
+            Console.WriteLine(res1);
+
+            // task 2
+            int res2 = RecursionMath.Prod(2, 3);
+            Console.WriteLine(res2);
         }
     }
 }
