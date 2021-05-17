@@ -262,4 +262,27 @@ namespace PT2
             Print_desc(node.LeftNode);
         }
     }
+
+    public class BSTInteger : BST<int>
+    {
+        public int BST_sum()
+        {
+            return BST_sum(RootNode);
+        }
+
+        public int BST_sum(BSTNode<int> node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            int sum = BST_sum(node.LeftNode);
+            sum += node.Data;
+            sum += BST_sum(node.RightNode);
+
+            return sum;
+        }
+
+    }
 }

@@ -39,7 +39,7 @@ namespace PT2
             RecursionMath.PrintListReverse(list.Last);
 
             // task 6
-            var binaryTree = new BST<int>();
+            var binaryTree = new BSTInteger();
 
             binaryTree.Add(8);
             binaryTree.Add(3);
@@ -56,6 +56,11 @@ namespace PT2
 
             Console.WriteLine("task 7");
             binaryTree.Print_desc();
+
+            Console.WriteLine("task 8");
+            int treeSum = binaryTree.BST_sum();
+            Console.WriteLine(treeSum);
+
         }
     }
 }
