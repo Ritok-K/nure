@@ -107,6 +107,11 @@ namespace PT2
             Console.WriteLine("task 13");
             int treeSize = binaryTree.Size;
             Console.WriteLine($"Tree size is {treeSize}");
+
+            Console.WriteLine("task 14");
+            var isBalanced = secondBinaryTree.IsBalanced;
+            Console.WriteLine($"Tree balanced factor is {isBalanced}.");
+
         }
     }
 }

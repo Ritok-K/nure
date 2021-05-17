@@ -59,6 +59,25 @@ namespace PT2
             }
         }
 
+        public int Depth
+        {
+            get
+            {
+                return 1 + Math.Max(LeftNode?.Depth ?? 0, RightNode?.Depth ?? 0);
+            }
+        }
+
+        public bool IsBalanced
+        {
+            get
+            {
+                var leftDepth = LeftNode?.Depth ?? 0;
+                var rightDepth = RightNode?.Depth ?? 0;
+
+                return Math.Abs(rightDepth - leftDepth) < 2;
+            }
+        }
+
         /// <summary>
         /// Розташування вузла відносно батьківського 
         /// </summary>
@@ -94,6 +113,15 @@ namespace PT2
                 return  RootNode?.Size ?? 0;
             }
         }
+
+        public bool IsBalanced
+        {
+            get
+            {
+                return RootNode?.IsBalanced ?? true;
+            }
+        }
+
 
 
         /// <summary>
