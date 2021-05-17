@@ -50,5 +50,19 @@ namespace PT2
                 PrintList(node.Next);
             }
         }
+
+        static public void PrintListReverse(LinkedListNode<int> node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            Console.WriteLine(node.Value);
+            if (node.Previous != null)
+            {
+                PrintListReverse(node.Previous);
+            }
+        }
     }
 }

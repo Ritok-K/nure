@@ -30,6 +30,10 @@ namespace PT2
             // task 4
             Console.WriteLine("task 4");
             RecursionMath.PrintList(list.First);
+
+            // task 5
+            Console.WriteLine("task 5");
+            RecursionMath.PrintListReverse(list.Last);
         }
     }
 }
