@@ -300,6 +300,52 @@ namespace PT2
         {
             RootNode = null;
         }
+
+        public bool IsEqual(BST<T> otherTree)
+        {
+            if(otherTree == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if(Size != otherTree.Size)
+            {
+                return false;
+            }
+
+            return IsEqual(RootNode, otherTree.RootNode);
+        }
+
+        public bool IsEqual(BSTNode<T> node1, BSTNode<T> node2)
+        {
+            bool hasNode1 = node1 != null;
+            bool hasNode2 = node2 != null;
+
+            bool res = hasNode1 == hasNode2;
+            if(res && hasNode2)
+            {
+                res = node1.Data.CompareTo(node2.Data) == 0;
+                if(res)
+                {
+                    bool hasLeft1 = node1.LeftNode != null;
+                    bool hasLeft2 = node2.LeftNode != null;
+                    res = hasLeft1 == hasLeft2;
+                    if(res)
+                    {
+                        bool hasRight1 = node1.RightNode != null;
+                        bool hasRight2 = node2.RightNode != null;
+                        res = hasRight1 == hasRight2;
+                        if(res)
+                        {
+                            res = IsEqual(node1.LeftNode, node2.LeftNode) &&
+                                  IsEqual(node1.RightNode, node2.RightNode);
+                        }
+                    }
+                }
+            }
+
+            return res;
+        }
     }
 
     public class BSTInteger : BST<int>

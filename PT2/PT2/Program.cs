@@ -61,6 +61,22 @@ namespace PT2
             int treeSum = binaryTree.BST_sum();
             Console.WriteLine($"Tree sum is {treeSum}");
 
+            Console.WriteLine("task 9");
+            var secondBinaryTree = new BSTInteger();
+
+            secondBinaryTree.Add(8);
+            secondBinaryTree.Add(3);
+            secondBinaryTree.Add(10);
+            secondBinaryTree.Add(1);
+            secondBinaryTree.Add(6);
+            secondBinaryTree.Add(4);
+            secondBinaryTree.Add(7);
+            secondBinaryTree.Add(14);
+            secondBinaryTree.Add(16);
+
+            var isEqual = binaryTree.IsEqual(secondBinaryTree);
+            Console.WriteLine($"The result of comparison is {isEqual}.");
+
             Console.WriteLine("task 11");
             var treeList = new LinkedList<int>();
             binaryTree.BST_List(treeList);
