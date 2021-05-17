@@ -59,8 +59,11 @@ namespace PT2
 
             Console.WriteLine("task 8");
             int treeSum = binaryTree.BST_sum();
-            Console.WriteLine(treeSum);
+            Console.WriteLine($"Tree sum is {treeSum}");
 
+            Console.WriteLine("task 13");
+            int treeSize = binaryTree.Size;
+            Console.WriteLine($"Tree size is {treeSize}");
         }
     }
 }

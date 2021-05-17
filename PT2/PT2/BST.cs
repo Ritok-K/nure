@@ -51,6 +51,14 @@ namespace PT2
         /// </summary>
         public BSTNode<T> ParentNode { get; set; }
 
+        public int Size
+        {
+            get
+            {
+                return 1 + (LeftNode?.Size ?? 0) + (RightNode?.Size ?? 0);
+            }
+        }
+
         /// <summary>
         /// Розташування вузла відносно батьківського 
         /// </summary>
@@ -78,6 +86,15 @@ namespace PT2
         /// Корінь бінарного дерева
         /// </summary>
         public BSTNode<T> RootNode { get; set; }
+
+        public int Size 
+        {
+            get
+            {
+                return  RootNode?.Size ?? 0;
+            }
+        }
+
 
         /// <summary>
         /// Додавання нового вузла в бінарне дерево
